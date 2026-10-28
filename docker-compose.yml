@@ -1,0 +1,43 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: seed-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - '${DB_PORT}:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${DB_USERNAME} -d ${DB_NAME}']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # Base descartable para los tests e2e: guarda los datos en memoria (tmpfs)
+  postgres-test:
+    image: postgres:16-alpine
+    container_name: seed-postgres-test
+    environment:
+      POSTGRES_USER: ${TEST_DB_USERNAME:-seed_test}
+      POSTGRES_PASSWORD: ${TEST_DB_PASSWORD:-seed_test}
+      POSTGRES_DB: ${TEST_DB_NAME:-seed_test}
+    ports:
+      - '${TEST_DB_PORT:-5433}:5432'
+    tmpfs:
+      - /var/lib/postgresql/data
+    healthcheck:
+      test:
+        [
+          'CMD-SHELL',
+          'pg_isready -U ${TEST_DB_USERNAME:-seed_test} -d ${TEST_DB_NAME:-seed_test}',
+        ]
+      interval: 2s
+      timeout: 5s
+      retries: 15
+
+volumes:
+  postgres_data:
