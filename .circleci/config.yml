@@ -18,6 +18,7 @@ jobs:
           TEST_DB_PASSWORD: seed_test
           TEST_DB_NAME: seed_test
           SWAPI_BASE_URL: https://swapi.dev/api
+          COVERALLS_REPO_TOKEN: VZXUeJSxAoUAdg5aBl5ChWAAGiZ2CVqau
       - image: cimg/postgres:16.4
         environment:
           POSTGRES_USER: seed_test
@@ -46,7 +47,10 @@ jobs:
           root: ~/project
           paths:
             - .
-
+      - coveralls/upload:
+          parallel: true
+          flag_name: Test 1
+          verbose: true
 workflows:
   build_test_deploy:
     jobs:
