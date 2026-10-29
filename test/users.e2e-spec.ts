@@ -61,7 +61,7 @@ describe('Users (e2e)', () => {
   });
 
   afterAll(async () => {
-    await app.close();
+    await app?.close();
   });
 
   const api = () => request(app.getHttpServer());
