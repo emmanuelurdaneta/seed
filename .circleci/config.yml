@@ -37,8 +37,8 @@ jobs:
             echo "Postgres did not become ready in time"
             exit 1
       - run:
-          name: Run tests
-          command: npm run test:e2e
+          name: Run tests with coverage
+          command: npm run test:e2e -- --coverage
       - run:
           name: Build app
           command: npm run build
@@ -47,7 +47,6 @@ jobs:
           paths:
             - .
       - coveralls/upload:
-          parallel: true
           flag_name: Test 1
           verbose: true
 workflows:
