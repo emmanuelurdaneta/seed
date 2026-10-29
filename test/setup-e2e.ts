@@ -2,7 +2,7 @@ import { TEST_DATABASE } from './utils/test-database';
 
 // AppModule valida estas variables al importarse, antes de que corra initTestApp.
 // La conexión real de los tests la define initTestApp con TEST_DATABASE, no estas variables.
-process.env.NODE_ENV = 'test';
+process.env.NODE_ENV ??= 'development';
 process.env.DB_HOST = TEST_DATABASE.host;
 process.env.DB_PORT = String(TEST_DATABASE.port);
 process.env.DB_USERNAME = TEST_DATABASE.username;
