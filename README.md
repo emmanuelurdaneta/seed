@@ -11,9 +11,10 @@ or update. Every request must only accept this `Content-type: application/json`.
 
 ### Badges
 
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/yaritaft/cursor-backend-challenge/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/yaritaft/cursor-backend-challenge/tree/master)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/emmanuelurdaneta/seed/tree/main.svg?style=svg&circle-token=CCIPRJ_SLnmuENpHfZUwwqtEvzYKT_bb8720c090bc23ae798b428856d0780fcbc7d18c)](https://dl.circleci.com/status-badge/redirect/gh/emmanuelurdaneta/seed/tree/main)
 
 [![Coverage Status](https://coveralls.io/repos/github/yaritaft/cursor-backend-challenge/badge.svg)](https://coveralls.io/github/yaritaft/cursor-backend-challenge)
+
 
 ### How to run locally coveralls
 
