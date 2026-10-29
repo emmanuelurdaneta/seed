@@ -6,6 +6,17 @@ orbs:
 jobs:
   build_and_test:
     docker:
+      - image: node:24.22-alpine
+        environment:
+          NODE_ENV: development
+          DB_HOST: db-test
+          TEST_DB_HOST: db-test
+          TEST_DB_PORT: 5432
+          TEST_DB_USERNAME: seed_test
+          TEST_DB_PASSWORD: poné-una-clave
+          TEST_DB_NAME: seed_test
+          SWAPI_BASE_URL: 'https://swapi.dev/api'
+          DB_SYNCHRONIZE: "true"
       - image: circleci/postgres:16.4-alpine
         environment:
           POSTGRES_USER: seed_test
