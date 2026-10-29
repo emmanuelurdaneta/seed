@@ -15,7 +15,7 @@
     "lint": "eslint \"{src,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:cov": "jest --coverage --config ./test/jest-e2e.json --runInBand",
+    "test:cov": "jest --coverage --config ./test/jest-e2e.json --runInBand && cat ./coverage/lcov.info | coveralls",
     "test:e2e": "jest --config ./test/jest-e2e.json --runInBand",
     "test:db:up": "docker compose -f docker-compose.test.yml up -d --wait db-test",
     "test:db:down": "docker compose -f docker-compose.test.yml rm -sf db-test"

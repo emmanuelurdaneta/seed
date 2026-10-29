@@ -1,11 +1,18 @@
 {
   "moduleFileExtensions": ["js", "json", "ts"],
-  "rootDir": ".",
+  "rootDir": "..",
   "testEnvironment": "node",
-  "testRegex": ".e2e-spec.ts$",
-  "setupFiles": ["<rootDir>/setup-e2e.ts"],
+  "testRegex": "test/.*\\.e2e-spec\\.ts$",
+  "setupFiles": ["<rootDir>/test/setup-e2e.ts"],
   "testTimeout": 30000,
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
-  }
+  },
+  "collectCoverageFrom": [
+    "src/**/*.ts",
+    "!src/**/*.spec.ts",
+    "!src/main.ts"
+  ],
+  "coverageDirectory": "<rootDir>/coverage",
+  "coverageReporters": ["text", "lcov"]
 }
