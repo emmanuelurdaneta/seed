@@ -15,11 +15,13 @@ or update. Every request must only accept this `Content-type: application/json`.
 
 
 
-### How to run locally coveralls
+### How to run coverage locally
 
 ```
-COVERALLS_REPO_TOKEN=gLskLgZ58OYgHYPem2MLSnox65zICVe8t npm run test:cov
+npm run test:cov
 ```
+
+Coveralls in CircleCI uses the `COVERALLS_REPO_TOKEN` project environment variable. Do not put that token in git.
 
 ## Features
 
