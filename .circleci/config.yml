@@ -6,35 +6,35 @@ orbs:
 jobs:
   build_and_test:
     docker:
-      - image: node:24.22-alpine
+      - image: cimg/node:24.22
         environment:
           NODE_ENV: development
-          DB_HOST: db-test
-          TEST_DB_HOST: db-test
+          DB_HOST: localhost
+          DB_SYNCHRONIZE: "true"
+          TEST_DB_HOST: localhost
           TEST_DB_PORT: 5432
           TEST_DB_USERNAME: seed_test
-          TEST_DB_PASSWORD: poné-una-clave
+          TEST_DB_PASSWORD: seed_test
           TEST_DB_NAME: seed_test
-          SWAPI_BASE_URL: 'https://swapi.dev/api'
-          DB_SYNCHRONIZE: "true"
-      - image: circleci/postgres:16.4-alpine
+          SWAPI_BASE_URL: https://swapi.dev/api
+      - image: cimg/postgres:16.4
         environment:
           POSTGRES_USER: seed_test
-          POSTGRES_PASSWORD: poné-una-clave
+          POSTGRES_PASSWORD: seed_test
           POSTGRES_DB: seed_test
-          POSTGRES_PORT: 5432
-        ports:
-          - 5432:5432
-        volumes:
-          - postgres_data:/var/lib/postgresql/data
-        restart: unless-stopped
-    executor:
-      name: node/default
-      tag: "24.22"
     steps:
       - checkout
       - node/install-packages:
           pkg-manager: npm
+      - run:
+          name: Wait for Postgres
+          command: |
+            for i in $(seq 1 30); do
+              nc -z localhost 5432 && echo "Postgres is ready" && exit 0
+              sleep 1
+            done
+            echo "Postgres did not become ready in time"
+            exit 1
       - run:
           name: Run tests
           command: npm run test:e2e
