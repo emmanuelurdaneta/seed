@@ -13,7 +13,7 @@ or update. Every request must only accept this `Content-type: application/json`.
 
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/emmanuelurdaneta/seed/tree/main.svg?style=svg&circle-token=CCIPRJ_SLnmuENpHfZUwwqtEvzYKT_bb8720c090bc23ae798b428856d0780fcbc7d18c)](https://dl.circleci.com/status-badge/redirect/gh/emmanuelurdaneta/seed/tree/main)
 
-
+[![Coverage Status](https://coveralls.io/repos/github/emmanuelurdaneta/seed/badge.svg?branch=main)](https://coveralls.io/github/emmanuelurdaneta/seed?branch=main)
 
 ### How to run coverage locally
 
